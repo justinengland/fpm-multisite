@@ -1,4 +1,4 @@
-FROM php:7.1.9-fpm
+FROM php:7.2-fpm
 
 RUN groupmod -g 402 www-data
 RUN usermod -u 401 www-data
