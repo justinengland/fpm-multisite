@@ -1,0 +1,10 @@
+stages:
+- name: Build
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./images/7.2/Dockerfile
+      buildContext: .
+      tag: jde5011/multisite-php
+      pushRemote: true
+      registry: index.docker.io
+timeout: 60
