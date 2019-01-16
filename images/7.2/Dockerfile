@@ -14,6 +14,7 @@ RUN apt-get update \
         libmemcached11 \
         libmemcachedutil2 \
         libmemcached-dev \
+        curl \
     && docker-php-ext-install -j$(nproc) \
         mysqli \
         pdo \
@@ -33,6 +34,16 @@ RUN curl https://getcomposer.org/download/$(curl -LSs https://api.github.com/rep
     && curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar > wp-cli.phar \
     && chmod +x wp-cli.phar \
     && mv wp-cli.phar /usr/local/bin/wp
+
+RUN curl -O https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz && \
+    tar -xvzf wordpress-${WORDPRESS_VERSION}.tar.gz -C /var/www/html && \
+    rm wordpress-${WORDPRESS_VERSION}.tar.gz && \
+    mv /var/www/html/wordpress/* /var/www/html/ && \
+    rm -rf /var/www/html/wordpress && \
+    rm -rf /var/www/html/wp-content/themes/* && \
+    rm -rf /var/www/html/wp-content/plugins/* && \
+    mkdir -p /var/www/html/wp-content/mu-plugins && \
+    mkdir -p /var/www/html/vendor
 
 #copy php.ini
 COPY ./php.ini /usr/local/etc/php/php.ini
