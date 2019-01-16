@@ -36,7 +36,8 @@ RUN curl https://getcomposer.org/download/$(curl -LSs https://api.github.com/rep
     && chmod +x wp-cli.phar \
     && mv wp-cli.phar /usr/local/bin/wp
 
-RUN curl -O https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz && \
+RUN cd /var/www/html && \
+    curl -O https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz && \
     tar -xvzf wordpress-${WORDPRESS_VERSION}.tar.gz -C /var/www/html && \
     rm wordpress-${WORDPRESS_VERSION}.tar.gz && \
     mv /var/www/html/wordpress/* /var/www/html/ && \
