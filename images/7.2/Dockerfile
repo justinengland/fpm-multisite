@@ -3,7 +3,6 @@ FROM php:7.2-fpm
 RUN groupmod -g 402 www-data
 RUN usermod -u 401 www-data
 
-RUN mkdir /var/www/html
 
 RUN apt-get update \
     && apt-get install -y \
