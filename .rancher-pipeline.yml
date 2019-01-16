@@ -7,4 +7,8 @@ stages:
       tag: jde5011/multisite-php:latest
       pushRemote: true
       registry: index.docker.io
+    when:
+      branch:
+        include:
+        - master
 timeout: 60
